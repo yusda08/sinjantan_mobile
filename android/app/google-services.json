@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "301211395384",
+    "project_id": "project-si-jantan",
+    "storage_bucket": "project-si-jantan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301211395384:android:4bfa6dc4149f02a0b1cdcd",
+        "android_client_info": {
+          "package_name": "com.sijantan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301211395384-6d1bcn54v4g3o3inbmnsdo9c5a3dv6ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4zLoX98Glu2PwCsf21Rc2p7bggjmTWeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "301211395384-6d1bcn54v4g3o3inbmnsdo9c5a3dv6ed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
