@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">301211395384-6d1bcn54v4g3o3inbmnsdo9c5a3dv6ed.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">301211395384</string>
+    <string name="google_api_key" translatable="false">AIzaSyB4zLoX98Glu2PwCsf21Rc2p7bggjmTWeE</string>
+    <string name="google_app_id" translatable="false">1:301211395384:android:4bfa6dc4149f02a0b1cdcd</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB4zLoX98Glu2PwCsf21Rc2p7bggjmTWeE</string>
+    <string name="google_storage_bucket" translatable="false">project-si-jantan.appspot.com</string>
+    <string name="project_id" translatable="false">project-si-jantan</string>
+</resources>
