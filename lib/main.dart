@@ -9,6 +9,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/route/route.gr.dart';
 import 'core/utils/const.dart';
+import 'core/utils/fcm_helper.dart';
 import 'cubit_observer.dart';
 import 'injection/injection.dart';
 import 'src/data/data_sources/user/user_local_data_src.dart';
@@ -19,6 +20,7 @@ void main() async {
   await Firebase.initializeApp();
   Bloc.observer = CubitObserver();
   configureDependencies();
+  sl<FCMHelper>().configureFcm();
   Hive.registerAdapter(UserModelAdapter());
   await Hive.openBox(userDataCacheBox);
 
