@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,23 +12,61 @@ import 'package:sijantan/src/presentation/home/pages/banner_detail_page.dart';
 import 'package:sijantan/src/presentation/widgets/banner_shimmer.dart';
 import 'package:auto_route/auto_route.dart';
 
-class BannerSection extends StatelessWidget {
+class BannerSection extends StatefulWidget {
   const BannerSection({Key? key}) : super(key: key);
+
+  @override
+  _BannerSectionState createState() => _BannerSectionState();
+}
+
+class _BannerSectionState extends State<BannerSection> {
+  final PageController _pgController = PageController();
+  int bannerIndex = 0;
+
+  Timer? timer;
+
+  void _animateSlider() {
+    timer = Timer.periodic(Duration(seconds: 8), (Timer timer) {
+      _pgController.animateToPage(
+        bannerIndex,
+        duration: Duration(milliseconds: 1000),
+        curve: Curves.easeIn,
+      );
+      bannerIndex++;
+    });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 130.h,
-      child: BlocBuilder<BannerCubit, BannerState>(
+      child: BlocConsumer<BannerCubit, BannerState>(
+        listener: (context, state) {
+          state.maybeWhen(
+            bannerLoaded: (listBanner) {
+              _animateSlider();
+            },
+            orElse: () {},
+          );
+        },
         builder: (context, state) {
           return state.maybeWhen(
             bannerLoaded: (listBanner) {
               return PageView.builder(
-                controller: PageController(),
-                onPageChanged: (pageIndex) {},
-                itemCount: 2,
+                controller: _pgController,
+                onPageChanged: (pageIndex) {
+                  bannerIndex = pageIndex;
+                },
+                itemCount: 1000,
                 itemBuilder: (context, index) {
-                  return BannerItemWidget(data: listBanner[index]);
+                  return BannerItemWidget(
+                      data: listBanner[index % listBanner.length]);
                 },
               );
             },

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sijantan/core/config/appstyle.dart';
@@ -29,15 +30,38 @@ class BannerDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('BERITA',
+          title: Text('DETAIL INFO',
               style: AppTextStyle.poppinsBold(fontSize: 14.sp, color: white))),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(data.bannerTitle, style: h1),
             Text(DateFormat.yMMMMEEEEd('id').format(data.createAt), style: tx2),
+            SizedBox(height: 5.h),
+            Hero(
+              tag: data.bannerId,
+              child: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.lightBlue, Colors.white])),
+                child: CachedNetworkImage(
+                  imageUrl: data.fotoPath + '/' + data.fotoName,
+                  width: double.infinity,
+                  height: 130.h,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) {
+                    return SizedBox(
+                        width: double.infinity,
+                        height: 108.w,
+                        child: Center(child: CircularProgressIndicator()));
+                  },
+                ),
+              ),
+            ),
             Divider(),
             Text(data.bannerContent, style: tx1),
           ],
